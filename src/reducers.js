@@ -29,8 +29,8 @@ function todos(state = [], action) {
                 }
                 return todo
             })
-    default:
-      return state
+        default:
+              return state
   }
 }
 

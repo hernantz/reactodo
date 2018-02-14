@@ -10,7 +10,6 @@ const AddTodoForm = ({ onSubmit }) => {
                 if (!input.value.trim()) {
                     return
                 }
-                console.log(input.value)
                 onSubmit(input.value)
                 input.value = ''
             } }
