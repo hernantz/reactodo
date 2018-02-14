@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import uuid from 'uuid/v1'
 
 const visibilityFilter = (state='SHOW_ALL', action) => {
     switch (action.type) {
@@ -10,28 +11,24 @@ const visibilityFilter = (state='SHOW_ALL', action) => {
 }
 
 
-let id = 1
-
 function todos(state = [], action) {
-  switch (action.type) {
-    case 'ADD_TODO':
-        return [
-            ...state,
-            {
-                text: action.text,
-                completed: false,
-                id: id++
-            }
-        ]
-    case 'TOGGLE_TODO':
-        return state.map((todo) => {
-            if (todo.id === action.id) {
-                return Object.assign({}, todo, {
-                    completed: !todo.completed
-                })
-            }
-            return todo
-        })
+    switch (action.type) {
+        case 'ADD_TODO':
+            return [
+                ...state,
+                {
+                    text: action.text,
+                    completed: false,
+                    id: uuid()
+                }
+            ]
+        case 'TOGGLE_TODO':
+            return state.map((todo) => {
+                if (todo.id === action.id) {
+                    return {...todo, completed: !todo.completed }
+                }
+                return todo
+            })
     default:
       return state
   }
