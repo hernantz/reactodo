@@ -12,6 +12,13 @@ export const toggleTodo = id => {
     }
 }
 
+export const deleteTodo = id => {
+    return {
+        type: 'DELETE_TODO',
+        id
+    }
+}
+
 export const addTodo = text => {
     return {
         type: 'ADD_TODO',

@@ -29,6 +29,10 @@ function todos(state = [], action) {
                 }
                 return todo
             })
+        case 'DELETE_TODO':
+            return state.filter(todo => {
+                return todo.id !== action.id
+            })
         default:
               return state
   }
