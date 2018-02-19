@@ -1,22 +1,12 @@
 import React from 'react'
-import FilterLink from '../containers/FilterLink'
+import Filters from './Filters'
+import Undo from '../containers/Undo'
 
 const Footer = () => (
-  <p>
-    Show:
-    {' '}
-    <FilterLink filter="SHOW_ALL">
-      All
-    </FilterLink>
-    {', '}
-    <FilterLink filter="SHOW_ACTIVE">
-      Active
-    </FilterLink>
-    {', '}
-    <FilterLink filter="SHOW_COMPLETED">
-      Completed
-    </FilterLink>
-  </p>
+    <div>
+        <Filters />
+        <Undo />
+    </div>
 )
 
 export default Footer

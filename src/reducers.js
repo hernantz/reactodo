@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import undoable, { includeAction } from 'redux-undo'
 import uuid from 'uuid/v1'
 
 const visibilityFilter = (state='SHOW_ALL', action) => {
@@ -9,7 +10,6 @@ const visibilityFilter = (state='SHOW_ALL', action) => {
             return state
     }
 }
-
 
 function todos(state = [], action) {
     switch (action.type) {
@@ -23,7 +23,7 @@ function todos(state = [], action) {
                 }
             ]
         case 'TOGGLE_TODO':
-            return state.map((todo) => {
+            return state.map(todo => {
                 if (todo.id === action.id) {
                     return {...todo, completed: !todo.completed }
                 }
@@ -35,12 +35,12 @@ function todos(state = [], action) {
             })
         default:
               return state
-  }
+    }
 }
 
 const todoApp = combineReducers({
-  visibilityFilter,
-  todos
+    visibilityFilter,
+    todos: undoable(todos, {filter: includeAction('DELETE_TODO')})
 })
 
 export default todoApp
