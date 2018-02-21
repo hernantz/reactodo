@@ -2,11 +2,5 @@ import AddTodoForm from '../components/AddTodoForm'
 import { connect } from 'react-redux'
 import { addTodo } from '../actions'
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    onSubmit: text => {
-        dispatch(addTodo(text))
-    }
-})
-
-const AddTodo = connect(null, mapDispatchToProps)(AddTodoForm)
+const AddTodo = connect(null, {onSubmit: addTodo})(AddTodoForm)
 export default AddTodo

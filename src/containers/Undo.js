@@ -2,21 +2,15 @@ import { ActionCreators as UndoActionCreators } from 'redux-undo'
 import { connect } from 'react-redux'
 import UndoBtn from '../components/Undo'
 
-const mapStateToProps = state => {
-    return {
-        canUndo: state.todos.past.length > 0
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onClick: () => dispatch(UndoActionCreators.undo()) 
-    }
-}
+const mapStateToProps = state => ({
+    canUndo: state.todos.past.length > 0
+})
 
 const Undo = connect(
     mapStateToProps,
-    mapDispatchToProps
+    {
+        onClick: UndoActionCreators.undo
+    }
 )(UndoBtn)
 
 export default Undo
